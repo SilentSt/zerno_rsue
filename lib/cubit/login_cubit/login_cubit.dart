@@ -4,4 +4,8 @@ import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginLoadedState());
+
+  Future<void> login()async{
+
+  }
 }
