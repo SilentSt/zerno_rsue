@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:window_size/window_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
@@ -10,6 +10,11 @@ import 'cubit/navigation_cubit/cubit.dart';
 import 'cubit/registration_cubit/cubit.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    //setWindowMaxSize(const Size(400, 820));
+    setWindowMinSize(const Size(400, 820));
+  }
   HttpOverrides.global = DevHttpOverrides();
   runApp(const MyApp());
 }

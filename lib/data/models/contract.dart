@@ -17,15 +17,15 @@ class PostContract {
 }
 
 class GetContract {
-  final String sellerId;
-  final String purchaseId;
+  final String sellerCode;
+  final String purchaserCode;
   final double price;
   final DateTime updated;
   final bool onTrade;
 
   GetContract.fromJson(Map<String, dynamic> data)
-      : sellerId = data['sellerId'],
-        purchaseId = data['purchaseId'],
+      : sellerCode = data['sellerCode'],
+        purchaserCode = data['purchaserCode'],
         price = data['price'],
         updated = DateTime.parse(
           data['updated'],

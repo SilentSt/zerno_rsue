@@ -47,33 +47,48 @@ class RegistrationView extends StatelessWidget {
                         controller: AppControllers.regPasswordController,
                         label: AppStrings.passwordField,
                         obscuredField: true,
-                        obscureWidgetActive: const Icon(Icons.visibility),
-                        obscureWidgetDisabled: const Icon(
-                          Icons.visibility_off,
+                        obscureWidgetActive: HoveredWidget(
+                          builder: (context, isHovered) {
+                            return const Icon(Icons.visibility);
+                          }
+                        ),
+                        obscureWidgetDisabled: HoveredWidget(
+                            builder: (context, isHovered) {
+                              return const Icon(Icons.visibility_off);
+                            }
                         ),
                       ),
-                      CupertinoButton(
-                        child: const Text(AppStrings.regButton),
-                        onPressed: _cubit.createUser,
-                        color: AppColors.lightGrey,
+                      HoveredWidget(
+                        builder: (context, isHovered) {
+                          return CupertinoButton(
+                            child: const Text(AppStrings.regButton),
+                            onPressed: _cubit.createUser,
+                            color: AppColors.lightGrey,
+                          );
+                        }
                       ),
                       const SizedBox(
                         height: 25,
                       ),
                       HoveredWidget(
-                        builder: (context, isHovered) => GestureDetector(
-                          onTap: _navCubit.pushLoginScreen,
-                          child: const SizedBox(
-                            height: 30,
-                            width: 300,
-                            child: Center(
-                              child: Text(
-                                AppStrings.alreadyReg,
-                                textAlign: TextAlign.center,
+                        builder: (context, isHovered) =>
+                            GestureDetector(
+                              onTap: _navCubit.pushLoginScreen,
+                              child: SizedBox(
+                                height: 30,
+                                width: 300,
+                                child: Center(
+                                  child: Text(
+                                    AppStrings.alreadyReg,
+                                    style: TextStyle(
+                                      color: isHovered
+                                          ? AppColors.accentColor
+                                          : AppColors.lightGrey,),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
                       ),
                     ],
                   ),

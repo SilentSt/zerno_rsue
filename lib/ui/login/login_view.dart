@@ -43,15 +43,21 @@ class LoginView extends StatelessWidget {
                         controller: AppControllers.loginPasswordController,
                         label: AppStrings.passwordField,
                         obscuredField: true,
-                        obscureWidgetActive: const Icon(Icons.visibility),
-                        obscureWidgetDisabled: const Icon(
-                          Icons.visibility_off,
+                        obscureWidgetActive: HoveredWidget(
+                          builder: (context, isHovered) =>
+                              const Icon(Icons.visibility),
+                        ),
+                        obscureWidgetDisabled: HoveredWidget(
+                          builder: (context, isHovered) =>
+                          const Icon(Icons.visibility_off),
                         ),
                       ),
-                      CupertinoButton(
-                        child: const Text(AppStrings.loginButton),
-                        onPressed: _cubit.login,
-                        color: AppColors.lightGrey,
+                      HoveredWidget(
+                        builder: (context, isHovered) => CupertinoButton(
+                          child: const Text(AppStrings.loginButton),
+                          onPressed: _cubit.login,
+                          color: AppColors.lightGrey,
+                        ),
                       ),
                       const SizedBox(
                         height: 25,
@@ -59,12 +65,16 @@ class LoginView extends StatelessWidget {
                       HoveredWidget(
                         builder: (context, isHovered) => GestureDetector(
                           onTap: _navCubit.pushRegistrationScreen,
-                          child: const SizedBox(
+                          child: SizedBox(
                             height: 30,
                             width: 300,
                             child: Center(
                               child: Text(
                                 AppStrings.regButton,
+                                style: TextStyle(
+                                    color: isHovered
+                                        ? AppColors.accentColor
+                                        : AppColors.lightGrey),
                                 textAlign: TextAlign.center,
                               ),
                             ),
