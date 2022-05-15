@@ -4,17 +4,30 @@ import 'package:zerno_rsue/cubit/navigation_cubit/cubit.dart';
 class NavigationCubit extends Cubit<NavigationState>{
   NavigationCubit() : super(NavigationLoginState());
 
-  NavigationState previousState = NavigationLoginState();
+  NavigationState currentPage = NavigationLoginState();
+  NavigationState previousPage = NavigationLoginState();
 
-  void pushLoginScreen() => emit(NavigationLoginState());
+  void pushLoginScreen() {
+    currentPage = NavigationLoginState();
+    emit(NavigationLoginState());
+  }
 
-  void pushRegistrationScreen() => emit(NavigationRegistrationState());
+  void pushRegistrationScreen(){
+    currentPage = NavigationRegistrationState();
+    emit(NavigationRegistrationState());
+  }
 
-  void pushHomeScreen() => emit(NavigationHomeState());
+  void pushHomeScreen() {
+    currentPage = NavigationHomeState();
+    emit(NavigationHomeState());
+  }
 
-  void pushMarketScreen() => emit(NavigationMarketState());
+  void pushMarketScreen() {
+    currentPage = NavigationMarketState();
+    emit(NavigationMarketState());
+  }
 
-  void pushToPreviousScreen() => emit(previousState);
+  void pushToPreviousScreen() => emit(previousPage);
 
 
 }

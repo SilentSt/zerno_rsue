@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zerno_rsue/cubit/navigation_cubit/cubit.dart';
 import 'package:zerno_rsue/data/models/contract_group.dart';
 import 'package:zerno_rsue/data/utils.dart';
 
@@ -45,38 +47,58 @@ class AppTable extends StatelessWidget {
                       'Цена',
                     ),
                   ),
-                ],
-                rows: List.generate(data.priceRow.length, (index) => DataRow(
-                  cells: [
-                    DataCell(
-                      Text(
-                        data.priceRow[index].contract.purchaserCode,
-                      ),
+                  DataColumn(
+                    label: Text(
+                      'Действие',
                     ),
-                    DataCell(
-                      Text(
-                        Utils.dateFormatter(
-                          data.priceRow[index].contract.updated,
+                  ),
+                ],
+                rows: List.generate(
+                  data.priceRow.length,
+                  (index) => DataRow(
+                    cells: [
+                      DataCell(
+                        Text(
+                          data.priceRow[index].contract.purchaserCode,
                         ),
                       ),
-                    ),
-                    DataCell(
-                      Text(
-                        data.priceRow[index].contract.sellerCode,
+                      DataCell(
+                        Text(
+                          Utils.dateFormatter(
+                            data.priceRow[index].contract.updated,
+                          ),
+                        ),
                       ),
-                    ),
-                    DataCell(
-                      Text(
-                        data.priceRow[index].count.toString(),
+                      DataCell(
+                        Text(
+                          data.priceRow[index].contract.sellerCode,
+                        ),
                       ),
-                    ),
-                    DataCell(
-                      Text(
-                        data.priceRow[index].contract.price.toString(),
+                      DataCell(
+                        Text(
+                          data.priceRow[index].count.toString(),
+                        ),
                       ),
-                    ),
-                  ],
-                )),
+                      DataCell(
+                        Text(
+                          data.priceRow[index].contract.price.toString(),
+                        ),
+                      ),
+                      DataCell(
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            (context.read<NavigationCubit>().currentPage
+                                        is NavigationHomeState &&
+                                    data.priceRow[index].contract.purchaserCode.length==5)
+                                ? Icons.clear
+                                : Icons.check,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
