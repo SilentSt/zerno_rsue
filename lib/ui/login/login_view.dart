@@ -80,6 +80,7 @@ class LoginView extends StatelessWidget {
         }
         if (state is LoginSuccessState) {
           _navCubit.pushHomeScreen();
+          _cubit.dropState();
         }
         if (state is LoginErrorState) {
           return AppError(

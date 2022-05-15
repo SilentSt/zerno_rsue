@@ -23,6 +23,10 @@ class RegistrationCubit extends Cubit<RegistrationState> {
         name: AppControllers.regCodeController.text,
         code: AppControllers.regCodeController.text,
       );
+      AppControllers.regEmailController.clear();
+      AppControllers.regPasswordController.clear();
+      AppControllers.regCodeController.clear();
+      AppControllers.regCodeController.clear();
       var mappedUser = user.toJson;
       var jsonUser = json.encode(mappedUser);
       var res = await API.createUser(jsonUser);
@@ -33,4 +37,6 @@ class RegistrationCubit extends Cubit<RegistrationState> {
       }
     }
   }
+
+  Future<void> dropState()async=>emit(RegistrationLoadedState());
 }

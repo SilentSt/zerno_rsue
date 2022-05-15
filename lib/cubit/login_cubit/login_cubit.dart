@@ -20,6 +20,8 @@ class LoginCubit extends Cubit<LoginState> {
         email: AppControllers.loginEmailController.text,
         password: AppControllers.loginPasswordController.text,
       );
+      AppControllers.loginEmailController.clear();
+      AppControllers.loginPasswordController.clear();
       var mappedUser = user.toJson;
       var jsonUser = json.encode(mappedUser);
       var res = await API.login(jsonUser);
