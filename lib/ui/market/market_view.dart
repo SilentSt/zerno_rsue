@@ -5,6 +5,7 @@ import 'package:zerno_rsue/cubit/navigation_cubit/cubit.dart';
 import 'package:zerno_rsue/resources/app_errors.dart';
 import 'package:zerno_rsue/resources/app_strings.dart';
 import 'package:zerno_rsue/resources/app_text_styles.dart';
+import 'package:zerno_rsue/ui/market/widgets/new_source_dialog.dart';
 import 'package:zerno_rsue/ui/widgets/app_error.dart';
 import 'package:zerno_rsue/ui/widgets/tables/app_table.dart';
 
@@ -90,7 +91,10 @@ class MarketView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: _navCubit.pushHomeScreen,
+                      onTap: () {
+                        _navCubit.pushHomeScreen();
+                        _cubit.dropState();
+                      },
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: const ColoredBox(
@@ -105,7 +109,10 @@ class MarketView extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: _navCubit.pushMarketScreen,
+                      onTap: () {
+                        _navCubit.pushMarketScreen();
+                        _cubit.dropState();
+                      },
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: const ColoredBox(
@@ -121,6 +128,18 @@ class MarketView extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.black,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const NewSourceDialog(),
+                );
+              },
+              child: const Icon(
+                Icons.add,
               ),
             ),
           );

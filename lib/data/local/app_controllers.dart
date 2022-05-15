@@ -12,4 +12,8 @@ class AppControllers {
   static TextEditingController regPasswordController = TextEditingController();
 
   static TextEditingController regCodeController = TextEditingController();
+
+  static TextEditingController countContractsController = TextEditingController();
+
+  static TextEditingController priceContractsController = TextEditingController();
 }

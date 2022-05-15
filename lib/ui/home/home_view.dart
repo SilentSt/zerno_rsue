@@ -111,7 +111,10 @@ class HomeView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: _navCubit.pushHomeScreen,
+                      onTap: () {
+                        _navCubit.pushHomeScreen();
+                        _cubit.dropState();
+                      },
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: const ColoredBox(
@@ -126,7 +129,10 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: _navCubit.pushMarketScreen,
+                      onTap: () {
+                        _navCubit.pushMarketScreen();
+                        _cubit.dropState();
+                      },
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: const Center(
