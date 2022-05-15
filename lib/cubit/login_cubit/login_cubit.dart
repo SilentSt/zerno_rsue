@@ -33,4 +33,6 @@ class LoginCubit extends Cubit<LoginState> {
       }
     }
   }
+
+  Future<void> dropState() async => emit(LoginLoadedState());
 }

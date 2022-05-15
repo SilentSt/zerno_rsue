@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
@@ -8,6 +10,7 @@ import 'cubit/navigation_cubit/cubit.dart';
 import 'cubit/registration_cubit/cubit.dart';
 
 void main() {
+  HttpOverrides.global = DevHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -34,7 +37,19 @@ class MyApp extends StatelessWidget {
           create: (context) => MarketCubit(),
         ),
       ],
-      child: const AppNavigator(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AppNavigator(),
+      ),
     );
+  }
+}
+
+class DevHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
