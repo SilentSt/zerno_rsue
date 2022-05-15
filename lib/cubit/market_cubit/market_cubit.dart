@@ -5,6 +5,7 @@ import 'package:zerno_rsue/cubit/market_cubit/cubit.dart';
 import 'package:zerno_rsue/data/models/contract.dart';
 import 'package:zerno_rsue/data/models/deal.dart';
 import 'package:zerno_rsue/data/models/publicrow.dart';
+import 'package:zerno_rsue/data/models/redeal.dart';
 import 'package:zerno_rsue/data/remote/api.dart';
 import 'package:zerno_rsue/resources/app_errors.dart';
 
@@ -46,7 +47,7 @@ class MarketCubit extends Cubit<MarketState> {
   }) async {
     emit(MarketLoadingState());
     PostContract contract =
-        PostContract(count: count, price: price, sell: sell);
+    PostContract(count: count, price: price, sell: sell);
     Map<String, dynamic> mappedData = contract.toJson;
     String jsonData = json.encode(mappedData);
     var res = await API.postContracts(jsonData);
@@ -81,7 +82,36 @@ class MarketCubit extends Cubit<MarketState> {
         ),
       );
     }
-    else{
+    else {
+      fetchData();
+    }
+  }
+
+  Future<void> redeal({
+    required String bayerCode,
+    required String sellerCode,
+    required int count,
+    required double price,
+  }) async {
+    emit(MarketLoadingState());
+    Redeal deal = Redeal(
+      bayerCode: bayerCode,
+      count: count,
+      price: price,
+      sellerCode: sellerCode,
+    );
+    Map<String, dynamic> mappedData = deal.toJson;
+    String jsonData = json.encode(mappedData);
+    var res = await API.postReDealContracts(jsonData);
+    print(res.body);
+    if (res.statusCode > 299) {
+      emit(
+        MarketErrorState(
+          AppErrors.baseExc,
+        ),
+      );
+    }
+    else {
       fetchData();
     }
   }

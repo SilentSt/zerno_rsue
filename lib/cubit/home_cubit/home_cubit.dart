@@ -4,6 +4,7 @@ import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
 import 'package:zerno_rsue/data/models/balance.dart';
 import 'package:zerno_rsue/data/models/contracts.dart';
 import 'package:zerno_rsue/data/models/deal.dart';
+import 'package:zerno_rsue/data/models/resell.dart';
 import 'package:zerno_rsue/data/remote/api.dart';
 import 'package:zerno_rsue/resources/app_errors.dart';
 
@@ -72,6 +73,29 @@ class HomeCubit extends Cubit<HomeState> {
           );
         }
       }
+    }
+  }
+
+  Future<void> resell({
+    required double newPrice,
+    required double oldPrice,
+    required int count,
+    required String code,
+  }) async {
+    emit(HomeLoadingState());
+    Resell resell = Resell(
+      oldPrice: oldPrice,
+      newPrice: newPrice,
+      count: count,
+      code: code,
+    );
+    Map<String, dynamic> mappedData = resell.toJson;
+    String jsonData = json.encode(mappedData);
+    var res = await API.postReSellContracts(jsonData);
+    if (res.statusCode > 299) {
+      emit(HomeErrorState(AppErrors.baseExc));
+    } else {
+      fetchContracts();
     }
   }
 

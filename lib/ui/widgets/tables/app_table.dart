@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
 import 'package:zerno_rsue/cubit/navigation_cubit/cubit.dart';
+import 'package:zerno_rsue/data/local/app_controllers.dart';
 import 'package:zerno_rsue/data/models/contract_group.dart';
 import 'package:zerno_rsue/data/utils.dart';
+import 'package:zerno_rsue/ui/widgets/dialogs/sell_dialog.dart';
 
 class AppTable extends StatelessWidget {
   const AppTable({
@@ -119,7 +121,22 @@ class AppTable extends StatelessWidget {
                                       : Icons.check,
                                 ),
                               )
-                            : const SizedBox.shrink(),
+                            : !sell
+                                ? IconButton(
+                                    onPressed: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (context) => SellDialog(
+                                          data: data,
+                                          index: index,
+                                        ),
+                                      );
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_forward,
+                                    ),
+                                  )
+                                : const SizedBox.shrink(),
                       ),
                     ],
                   ),

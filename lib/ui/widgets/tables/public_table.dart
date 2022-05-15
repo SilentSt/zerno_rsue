@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zerno_rsue/cubit/market_cubit/cubit.dart';
 import 'package:zerno_rsue/data/models/publicrow.dart';
 import 'package:zerno_rsue/data/utils.dart';
+import 'package:zerno_rsue/ui/widgets/dialogs/buy_dialog.dart';
 
 class PublicTable extends StatelessWidget {
   const PublicTable({
@@ -89,30 +88,19 @@ class PublicTable extends StatelessWidget {
                           data.data[index].contract.price.toString(),
                         ),
                       ),
-                      DataCell(
-                          IconButton(
-                            onPressed: () {
-                              if(sell){
-                                context.read<MarketCubit>().deal(
-                                  code: data.data[index].contract.sellerCode,
-                                  count: data.data[index].count,
-                                  price: data.data[index].contract.price,
-                                  buy: true,
-                                );
-                              }
-                              else{
-                                context.read<MarketCubit>().deal(
-                                  code: data.data[index].contract.purchaserCode,
-                                  count: data.data[index].count,
-                                  price: data.data[index].contract.price,
-                                  buy: false,
-                                );
-                              }
-
-                            },
-                            icon: const Icon(Icons.check),
-                          )
-                      ),
+                      DataCell(IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => BuyDialog(
+                              data: data,
+                              sell: sell,
+                              index: index,
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.arrow_back),
+                      )),
                     ],
                   ),
                 ),

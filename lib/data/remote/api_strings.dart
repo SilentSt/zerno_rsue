@@ -8,7 +8,7 @@ class ApiStrings{
   static const String dealContracts = 'Contracts/deal';
   static const String balance = 'Contracts/balance';
   static const String resell = 'Contracts/resell';
-  static const String redeal = 'Contracts/readeal';
+  static const String redeal = 'Contracts/redeal';
   static const String publicsell = 'Contracts/publicsell';
   static const String publicbuy = 'Contracts/publicbuy';
 }

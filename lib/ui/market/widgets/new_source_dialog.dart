@@ -20,6 +20,7 @@ class NewSourceDialog extends StatelessWidget {
             child: SingleChildScrollView(
               child: SizedBox(
                 height: 320,
+                width: 320,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

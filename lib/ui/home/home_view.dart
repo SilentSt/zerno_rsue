@@ -133,10 +133,13 @@ class HomeView extends StatelessWidget {
                         _navCubit.pushMarketScreen();
                         _cubit.dropState();
                       },
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: const Center(
-                          child: Text(AppStrings.market),
+                      child: ColoredBox(
+                        color: Colors.white,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: const Center(
+                            child: Text(AppStrings.market),
+                          ),
                         ),
                       ),
                     ),

@@ -16,4 +16,10 @@ class AppControllers {
   static TextEditingController countContractsController = TextEditingController();
 
   static TextEditingController priceContractsController = TextEditingController();
+
+  static TextEditingController sellCountOfContractsController = TextEditingController();
+
+  static TextEditingController sellPriceOfContractsController = TextEditingController();
+
+  static TextEditingController buyCountOfContractsController = TextEditingController();
 }

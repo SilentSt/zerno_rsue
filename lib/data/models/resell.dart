@@ -11,7 +11,7 @@ class Resell {
     required this.code,
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> get toJson => {
         "oldPrice": oldPrice,
         "newPrice": newPrice,
         "count": count,
