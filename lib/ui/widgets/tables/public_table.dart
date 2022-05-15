@@ -90,31 +90,28 @@ class PublicTable extends StatelessWidget {
                         ),
                       ),
                       DataCell(
-                        !data.data[index].contract.onTrade
-                            ? IconButton(
-                                onPressed: () {
-                                  if(sell){
-                                    context.read<MarketCubit>().deal(
-                                      code: data
-                                          .data[index].contract.sellerCode,
-                                      count: data.data[index].count,
-                                      price: data.data[index].contract.price,
-                                      buy: true,
-                                    );
-                                  }
-                                  else{
-                                    context.read<MarketCubit>().deal(
-                                      code: data.data[index].contract.purchaserCode,
-                                      count: data.data[index].count,
-                                      price: data.data[index].contract.price,
-                                      buy: false,
-                                    );
-                                  }
+                          IconButton(
+                            onPressed: () {
+                              if(sell){
+                                context.read<MarketCubit>().deal(
+                                  code: data.data[index].contract.sellerCode,
+                                  count: data.data[index].count,
+                                  price: data.data[index].contract.price,
+                                  buy: true,
+                                );
+                              }
+                              else{
+                                context.read<MarketCubit>().deal(
+                                  code: data.data[index].contract.purchaserCode,
+                                  count: data.data[index].count,
+                                  price: data.data[index].contract.price,
+                                  buy: false,
+                                );
+                              }
 
-                                },
-                                icon: const Icon(Icons.check),
-                              )
-                            : const SizedBox.shrink(),
+                            },
+                            icon: const Icon(Icons.check),
+                          )
                       ),
                     ],
                   ),

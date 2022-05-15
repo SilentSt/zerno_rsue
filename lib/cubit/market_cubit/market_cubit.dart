@@ -31,8 +31,8 @@ class MarketCubit extends Cubit<MarketState> {
         PublicRow publicBuy = PublicRow.fromJson(bMappedData);
         emit(
           MarketLoadedState(
-            publicSell: publicsell,
-            publicBuy: publicBuy,
+            publicSell: publicBuy,
+            publicBuy: publicsell,
           ),
         );
       }
@@ -73,6 +73,7 @@ class MarketCubit extends Cubit<MarketState> {
     Map<String, dynamic> mappedData = deal.toJson;
     String jsonData = json.encode(mappedData);
     var res = await API.postDealContracts(jsonData);
+    print(res.body);
     if (res.statusCode > 299) {
       emit(
         MarketErrorState(
