@@ -62,4 +62,50 @@ class API {
     );
     return response;
   }
+
+  static Future<http.Response> postReDealContracts(String data) async {
+    var response = await http.post(
+      Uri.parse(
+        ApiStrings.url + ApiStrings.redeal,
+      ),
+      body: data,
+      headers: Headers.authPostHeader,
+    );
+    return response;
+  }
+
+  static Future<http.Response> postReSellContracts(String data) async {
+    var response = await http.post(
+      Uri.parse(
+        ApiStrings.url + ApiStrings.resell,
+      ),
+      body: data,
+      headers: Headers.authPostHeader,
+    );
+    return response;
+  }
+
+  static Future<http.Response> getBalance() async {
+    var response = await http.get(
+      Uri.parse(ApiStrings.url + ApiStrings.balance),
+      headers: Headers.authPostHeader,
+    );
+    return response;
+  }
+
+  static Future<http.Response> getPublicSell() async {
+    var response = await http.get(
+      Uri.parse(ApiStrings.url + ApiStrings.publicsell),
+      headers: Headers.authPostHeader,
+    );
+    return response;
+  }
+
+  static Future<http.Response> getPublicBuy() async {
+    var response = await http.get(
+      Uri.parse(ApiStrings.url + ApiStrings.publicbuy),
+      headers: Headers.authPostHeader,
+    );
+    return response;
+  }
 }

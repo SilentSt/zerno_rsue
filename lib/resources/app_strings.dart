@@ -9,4 +9,5 @@ class AppStrings{
   static const market = 'Торговая площадка';
   static const selsTableTitle = 'Продажи';
   static const buysTableTitle = 'Покупки';
+  static const history = 'История';
 }
