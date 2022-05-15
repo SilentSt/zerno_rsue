@@ -7,4 +7,6 @@ class AppStrings{
   static const alreadyReg = 'Уже зарегестрированны? Войти';
   static const myDeals = 'Мои сделки';
   static const market = 'Торговая площадка';
+  static const selsTableTitle = 'Продажи';
+  static const buysTableTitle = 'Покупки';
 }

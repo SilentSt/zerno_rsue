@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
 import 'package:zerno_rsue/cubit/navigation_cubit/cubit.dart';
 import 'package:zerno_rsue/resources/app_strings.dart';
+import 'package:zerno_rsue/resources/app_text_styles.dart';
 import 'package:zerno_rsue/ui/widgets/app_error.dart';
 import 'package:zerno_rsue/ui/widgets/tables/app_table.dart';
 
@@ -23,10 +24,35 @@ class HomeView extends StatelessWidget {
         if (state is HomeLoadedState) {
           return Scaffold(
             body: SafeArea(
-              child: SingleChildScrollView(
-                child: AppTable(
-                  data: state.contracts.mySellContracts,
-                ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 10,),
+                  Text(AppStrings.selsTableTitle, style: AppTextStyles.h2.black().bold900(),),
+                  const SizedBox(height: 10,),
+                  SizedBox(
+                    height: (MediaQuery.of(context).size.height - 167)/2,
+                    child: SingleChildScrollView(
+                      child: AppTable(
+                        data: state.contracts.mySellContracts,
+                        sell: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  Container(width: MediaQuery.of(context).size.width, height: 1, color: Colors.black,),
+                  const SizedBox(height: 10,),
+                  Text(AppStrings.selsTableTitle, style: AppTextStyles.h2.black().bold900(),),
+                  SizedBox(
+                    height: (MediaQuery.of(context).size.height - 167)/2,
+                    child: SingleChildScrollView(
+                      child: AppTable(
+                        data: state.contracts.myBuyContracts,
+                        sell: false,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                ],
               ),
             ),
             bottomNavigationBar: BottomAppBar(

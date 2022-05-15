@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
 import 'package:zerno_rsue/cubit/navigation_cubit/cubit.dart';
 import 'package:zerno_rsue/data/models/contract_group.dart';
 import 'package:zerno_rsue/data/utils.dart';
@@ -8,8 +9,13 @@ class AppTable extends StatelessWidget {
   const AppTable({
     Key? key,
     required this.data,
+    required this.sell,
   }) : super(key: key);
 
+  ///if sell = true
+  ///
+  /// if buy = false
+  final bool sell;
   final ContractGroup data;
 
   @override
@@ -85,16 +91,35 @@ class AppTable extends StatelessWidget {
                         ),
                       ),
                       DataCell(
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            (context.read<NavigationCubit>().currentPage
-                                        is NavigationHomeState &&
-                                    data.priceRow[index].contract.purchaserCode.length==5)
-                                ? Icons.clear
-                                : Icons.check,
-                          ),
-                        ),
+                        ((data.priceRow[index].contract.purchaserCode.length !=
+                                        5 &&
+                                    sell) ||
+                                (data.priceRow[index].contract.sellerCode
+                                            .length !=
+                                        5 &&
+                                    !sell))
+                            ? IconButton(
+                                onPressed: () {
+                                  if (context
+                                      .read<NavigationCubit>()
+                                      .currentPage is NavigationHomeState) {
+                                    context.read<HomeCubit>().closeContract(
+                                          code: data.selfCode,
+                                          count: data.priceRow[index].count,
+                                          price: data
+                                              .priceRow[index].contract.price,
+                                          buy: sell,
+                                        );
+                                  }
+                                },
+                                icon: Icon(
+                                  context.read<NavigationCubit>().currentPage
+                                          is NavigationHomeState
+                                      ? Icons.clear
+                                      : Icons.check,
+                                ),
+                              )
+                            : const SizedBox.shrink(),
                       ),
                     ],
                   ),
