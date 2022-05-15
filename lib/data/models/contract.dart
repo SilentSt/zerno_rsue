@@ -1,5 +1,5 @@
 class PostContract {
-  final double count;
+  final int count;
   final double price;
   final bool sell;
 

@@ -19,9 +19,9 @@ class Balance {
 
 class OperationResultsDto {
   final DateTime dateTime;
-  final double balance;
+  final double? balance;
 
   OperationResultsDto.fromJson(Map<String, dynamic> data)
-      : dateTime = DateTime.parse(data['dateTime']),
-        balance = double.parse(data['balance']);
+      : dateTime = data['dateTime']==null?DateTime.now():DateTime.parse(data['dateTime']),
+        balance = double.parse(data['balance'].toString());
 }

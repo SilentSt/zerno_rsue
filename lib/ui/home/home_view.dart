@@ -110,22 +110,28 @@ class HomeView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: const ColoredBox(
-                        color: Colors.black,
-                        child: Center(
-                          child: Text(
-                            AppStrings.myDeals,
-                            style: TextStyle(color: Colors.white),
+                    GestureDetector(
+                      onTap: _navCubit.pushHomeScreen,
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: const ColoredBox(
+                          color: Colors.black,
+                          child: Center(
+                            child: Text(
+                              AppStrings.myDeals,
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: const Center(
-                        child: Text(AppStrings.market),
+                    GestureDetector(
+                      onTap: _navCubit.pushMarketScreen,
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: const Center(
+                          child: Text(AppStrings.market),
+                        ),
                       ),
                     ),
                   ],
