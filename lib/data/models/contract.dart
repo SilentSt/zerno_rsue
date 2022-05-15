@@ -24,9 +24,9 @@ class GetContract {
   final bool onTrade;
 
   GetContract.fromJson(Map<String, dynamic> data)
-      : sellerCode = data['sellerCode'],
-        purchaserCode = data['purchaserCode'],
-        price = data['price'],
+      : sellerCode = data['sellerCode']??"",
+        purchaserCode = data['purchaserCode']??"",
+        price = double.parse(data['price'].toString()),
         updated = DateTime.parse(
           data['updated'],
         ),

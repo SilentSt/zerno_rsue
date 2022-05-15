@@ -4,11 +4,11 @@ class Headers {
   static final Map<String, String> authPostHeader = {
     'accept': '*/*',
     'Content-Type': 'application/json',
-    'Authorization': TempStorage.token,
+    'Authorization': "Bearer ${TempStorage.token}",
   };
   static final Map<String, String> authGetHeader = {
     'accept':'text/plain',
-    'Authorization': TempStorage.token,
+    'Authorization': "Bearer ${TempStorage.token}",
   };
   static final Map<String, String> postHeader = {
     'accept': '*/*',

@@ -1,5 +1,4 @@
 import 'package:zerno_rsue/data/models/contract_group.dart';
-import 'package:zerno_rsue/data/models/contract_person.dart';
 
 class MyContracts {
   final double balance;
@@ -8,7 +7,7 @@ class MyContracts {
   final ContractGroup myBuyContracts;
 
   MyContracts.fromJson(Map<String, dynamic> data)
-      : balance = data['balance'],
+      : balance = double.parse(data['balance'].toString()),
         count = data['count'],
         myBuyContracts = ContractGroup.fromJson(
           data['myBuyContracts'],

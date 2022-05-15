@@ -4,16 +4,18 @@ class ContractGroup {
   final String selfCode;
   final double balance;
   final int count;
-  final List<ContractPerson> contractPersons;
+  final List<PriceRow> priceRow;
 
   ContractGroup.fromJson(Map<String, dynamic> data)
       : selfCode = data['selfCode'],
-        balance = data['balance'],
+        balance = double.parse(data['balance'].toString()),
         count = data['count'],
-        contractPersons = List.generate(
-          data['contractPersons'].length,
-          (index) => ContractPerson.fromJson(
-            data[index],
-          ),
-        );
+        priceRow = data['priceRow'] == null
+            ? []
+            : List.generate(
+                data['priceRow'].length,
+                (index) => PriceRow.fromJson(
+                  data['priceRow'][index],
+                ),
+              );
 }

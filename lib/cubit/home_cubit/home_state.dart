@@ -4,6 +4,8 @@ abstract class HomeState{}
 
 class HomeLoadingState extends HomeState{}
 
+class HomeEmptyState extends HomeState{}
+
 class HomeLoadedState extends HomeState{
   final MyContracts contracts;
 

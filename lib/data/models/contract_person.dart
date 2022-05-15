@@ -1,15 +1,14 @@
-import 'package:zerno_rsue/data/models/prices.dart';
+import 'contract.dart';
 
-class ContractPerson {
+class PriceRow {
+  final int count;
   final String code;
-  final List<Prices> prices;
+  final GetContract contract;
 
-  ContractPerson.fromJson(Map<String, dynamic> data)
+  PriceRow.fromJson(Map<String, dynamic> data)
       : code = data['code'],
-        prices = List.generate(
-          data['prices'],
-          (index) => Prices.fromJson(
-            data[index],
-          ),
+        count = data['count'],
+        contract = GetContract.fromJson(
+          data['contract'],
         );
 }

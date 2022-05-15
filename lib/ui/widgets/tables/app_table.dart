@@ -1,49 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:zerno_rsue/resources/app_colors.dart';
-import 'package:zerno_rsue/resources/app_text_styles.dart';
+import 'package:zerno_rsue/data/models/contract_group.dart';
+import 'package:zerno_rsue/data/utils.dart';
 
+class AppTable extends StatelessWidget {
+  const AppTable({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
-class Table extends StatefulWidget {
-  const Table({Key? key}) : super(key: key);
+  final ContractGroup data;
 
-  @override
-  _TableState createState() => _TableState();
-}
-
-class _TableState extends State<Table>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("test"),
-
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            DataTable(
+    return Center(
+      child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
+            children: [
+              DataTable(
                 columns: const [
                   DataColumn(
-                      label: Text('Номер покупателя')),
-                  DataColumn(
-                      label: Text('Дата сделки')
+                    label: Text(
+                      'Номер покупателя',
+                    ),
                   ),
                   DataColumn(
-                      label: Text('Номер продавца')
+                    label: Text(
+                      'Дата сделки',
+                    ),
                   ),
                   DataColumn(
-                      label: Text('Объем')
+                    label: Text(
+                      'Номер продавца',
+                    ),
                   ),
                   DataColumn(
-                      label: Text('Цена')
+                    label: Text(
+                      'Объем',
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      'Цена',
+                    ),
                   ),
                 ],
-                rows: const [
-                  DataRow(cells: [
-                    DataCell(Text('00'))
-                  ])
-                ])
-          ],
+                rows: List.generate(data.priceRow.length, (index) => DataRow(
+                  cells: [
+                    DataCell(
+                      Text(
+                        data.priceRow[index].contract.purchaserCode,
+                      ),
+                    ),
+                    DataCell(
+                      Text(
+                        Utils.dateFormatter(
+                          data.priceRow[index].contract.updated,
+                        ),
+                      ),
+                    ),
+                    DataCell(
+                      Text(
+                        data.priceRow[index].contract.sellerCode,
+                      ),
+                    ),
+                    DataCell(
+                      Text(
+                        data.priceRow[index].count.toString(),
+                      ),
+                    ),
+                    DataCell(
+                      Text(
+                        data.priceRow[index].contract.price.toString(),
+                      ),
+                    ),
+                  ],
+                )),
+              ),
+            ],
+          ),
         ),
       ),
     );

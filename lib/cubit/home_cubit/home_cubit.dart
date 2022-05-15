@@ -2,22 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zerno_rsue/cubit/home_cubit/cubit.dart';
+import 'package:zerno_rsue/data/local/temp_storage.dart';
 import 'package:zerno_rsue/data/models/contracts.dart';
 import 'package:zerno_rsue/data/models/deal.dart';
 import 'package:zerno_rsue/data/remote/api.dart';
 import 'package:zerno_rsue/resources/app_errors.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeLoadingState());
+  HomeCubit() : super(HomeEmptyState());
 
   Future<void> fetchContracts() async {
     emit(HomeLoadingState());
     var res = await API.getContracts();
     if (res.statusCode > 299) {
-      emit(HomeErrorState(AppErrors.wrongAuthData));
+      emit(HomeErrorState(AppErrors.baseExc));
     }
     else {
       String data = res.body;
+      print(data);
       Map<String, dynamic> mappedData = json.decode(data);
       MyContracts myContracts = MyContracts.fromJson(mappedData);
       emit(HomeLoadedState(myContracts));
@@ -51,6 +53,6 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> dropState() async => emit(HomeLoadingState());
+  Future<void> dropState() async => emit(HomeEmptyState());
 
 }

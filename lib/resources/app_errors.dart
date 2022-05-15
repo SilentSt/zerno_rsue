@@ -5,4 +5,5 @@ class AppErrors{
   static const String wrongData = 'Данные заполнены неверно';
   static const String errorTitle = 'Ошибка';
   static const String acceptError = 'Ок';
+  static const String baseExc = 'неизвестная ошибка';
 }
